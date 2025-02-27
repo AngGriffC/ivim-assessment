@@ -1,0 +1,301 @@
+body {
+  background-color: #e7edf1;
+  color: #262638;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.Banner {
+  width: 100%;
+  height: 2.6rem;
+  color: #e7edf1;
+  background-color: #262638;
+}
+
+.Banner h1 {
+  font-family: serif;
+  font-weight: lighter;
+  letter-spacing: 0.5rem;
+  text-align: right;
+  padding: 0.3rem;
+}
+
+.CreateNoteButton {
+  color: #e7edf1;
+  font-size: larger;
+  background-color: #262638;
+  border: none;
+  float: left;
+  margin: 0.4rem;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+
+  &:hover {
+    color: #9aa0a7;
+  }
+}
+
+.NotesWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.NotesList {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  margin: 0.4rem auto;
+  width: fit-content;
+}
+
+.Note {
+  border: 0.1rem solid #262638;
+  border-radius: 0.4rem;
+  margin: 0.4rem;
+  padding: 0.9rem 0.6rem;
+  cursor: pointer;
+  width: 90%;
+
+  &:hover {
+    color: #e7edf1;
+    border-color: #e7edf1;
+    background-color: #262638;
+
+    .NoteDate {
+      color: #b1b4c3;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .NotesList {
+    justify-content: center;
+  }
+  .Note {
+    width: calc(45% - 1rem);
+  }
+}
+
+.NoteIcon {
+  float: left;
+}
+
+.NoteTitle {
+  font-weight: bold;
+  float: left;
+  margin-left: 0.6rem;
+}
+
+.NoteDate {
+  color: #4c525c;
+  font-weight: light;
+  float: right;
+}
+
+.NoteEditor {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba($color: #e7edf1, $alpha: 0.5);
+  transition: 0.3s ease-in-out;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__content {
+    width: 90%;
+    margin: 15% auto;
+    background-color: #262638;
+    color: #e7edf1;
+    border: 0.1rem solid #e7edf1;
+    border-radius: 0.4rem;
+    position: relative;
+    transition: inherit;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100px);
+    padding: 1rem;
+  }
+  @media (min-width: 700px) {
+    &__content {
+      width: 50%;
+    }
+  }
+
+  .EditorInput {
+    width: 95%;
+    margin: 0 auto;
+    background-color: #262638;
+    color: #e7edf1;
+    border: none;
+    border-bottom: 0.1rem solid #9aa0a7;
+    border-radius: 0.2rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .Warning {
+    color: #e0aa59;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  .EditorExit {
+    float: left;
+    cursor: pointer;
+    &:hover {
+      color: #9aa0a7;
+    }
+  }
+
+  .EditorSave {
+    float: right;
+    cursor: pointer;
+    &:hover {
+      color: #9aa0a7;
+    }
+  }
+
+  &.active &__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.NoteDetails {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba($color: #e7edf1, $alpha: 0.5);
+  transition: 0.3s ease-in-out;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  &__content {
+    max-width: 80%;
+    margin: 15% auto;
+    background-color: #e7edf1;
+    border: 0.1rem solid #262638;
+    border-radius: 0.4rem;
+    position: relative;
+    transition: inherit;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100px);
+    padding: 0.5rem;
+
+    .NoteBody {
+      color: #4c525c;
+      margin: 0.5rem;
+    }
+
+    .DetailExit {
+      float: left;
+      cursor: pointer;
+      &:hover {
+        color: #9aa0a7;
+      }
+    }
+
+    .DetailEdit,
+    .DetailYes {
+      float: right;
+      cursor: pointer;
+      &:hover {
+        color: #9aa0a7;
+      }
+    }
+
+    .DetailDelete,
+    .DetailNo {
+      float: right;
+      margin-right: 0.4rem;
+      cursor: pointer;
+      &:hover {
+        color: #9aa0a7;
+      }
+    }
+  }
+
+  @media (min-width: 700px) {
+    &__content {
+      width: 40%;
+    }
+  }
+
+  &.active &__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.Messages {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2.2rem;
+  overflow: auto;
+  background-color: rgba($color: #e7edf1, $alpha: 0.5);
+  transition: 0.3s ease-in-out;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__content {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #828ea4;
+    color: #e7edf1;
+    border: 0.1rem solid #e7edf1;
+    border-radius: 0.4rem;
+    position: relative;
+    transition: inherit;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(120%);
+    padding: 0.5rem;
+    cursor: pointer;
+
+    .MessagesExit {
+      float: right;
+    }
+  }
+
+  &.active &__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
